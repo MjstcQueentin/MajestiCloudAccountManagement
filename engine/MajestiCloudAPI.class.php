@@ -100,7 +100,7 @@ class MajestiCloudAPI
         return $this->parse_response(curl_exec($this->ch));
     }
 
-    public function client_get($uuid)
+    public function client_get($uuid = "")
     {
         curl_setopt_array($this->ch, [
             CURLOPT_URL => self::API_ROOT . "/client.php?uuid=" . $uuid,
