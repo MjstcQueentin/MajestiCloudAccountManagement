@@ -32,8 +32,8 @@ if ($user["primary_email_is_validated"] == false) {
             <div class="d-flex align-items-center gap-3 mb-2">
                 <div><img src="<?= $api->user_profile_picture_get() ?>" class="rounded-circle" alt="Photo de profil" height="80" width="80"></div>
                 <div>
-                    <p class="h3 mb-1"><?= $_SESSION["user"]["name"] ?></p>
-                    <p class="mb-0"><?= $_SESSION["user"]["primary_email"] ?></p>
+                    <p class="h3 mb-1"><?= htmlspecialchars($_SESSION["user"]["name"]) ?></p>
+                    <p class="mb-0"><?= htmlspecialchars($_SESSION["user"]["primary_email"]) ?></p>
                 </div>
             </div>
             <a href="profile.php" class="btn btn-primary shadow-sm"><i class="bi bi-pencil"></i> Modifier le profil</a>
@@ -72,11 +72,11 @@ if ($user["primary_email_is_validated"] == false) {
             <p class="h4 mt-0">Dernière activité</p>
             <div class="d-flex align-items-center gap-3 mb-2">
                 <div>
-                    <img src="<?= $client["logo_url"] ?>" title="Logo de l'application" height="55" width="55">
+                    <img src="<?= htmlspecialchars($client["logo_url"]) ?>" title="Logo de l'application" height="55" width="55">
                 </div>
                 <div>
-                    <p class="m-0"><?= $sessions[0]["client_name"] ?> sur <?= $sessions[0]["device_name"] ?></p>
-                    <p class="m-0"><?= $sessions[0]["last_activity_on"] ?> - <?= $sessions[0]["last_activity_ip"] ?></p>
+                    <p class="m-0"><?= htmlspecialchars($sessions[0]["client_name"]) ?> sur <?= htmlspecialchars($sessions[0]["device_name"]) ?></p>
+                    <p class="m-0"><?= htmlspecialchars($sessions[0]["last_activity_on"]) ?> - <?= htmlspecialchars($sessions[0]["last_activity_ip"]) ?></p>
                 </div>
             </div>
             <a href="sessions.php" class="btn btn-primary shadow-sm"><i class="bi bi-gear-wide-connected"></i> Gérer les sessions</a>

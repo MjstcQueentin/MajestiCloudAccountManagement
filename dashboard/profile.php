@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2><i class="bi bi-person-vcard"></i> Nom d'affichage</h2>
         <form class="mb-3" action="" method="POST">
             <div class="mb-3">
-                <input type="text" class="form-control" id="displayNameInput" name="user[name]" value="<?= $_SESSION["user"]["name"] ?>" required>
+                <input type="text" class="form-control" id="displayNameInput" name="user[name]" value="<?= htmlspecialchars($_SESSION["user"]["name"]) ?>" required>
             </div>
             <button type="submit" class="btn btn-primary shadow-sm">Enregistrer</button>
         </form>
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2><i class="bi bi-envelope"></i> Adresse e-mail principale</h2>
         <form class="mb-3" action="" method="POST">
             <div class="mb-3">
-                <input type="text" class="form-control" id="primaryEmailInput" name="user[primary_email]" value="<?= $_SESSION["user"]["primary_email"] ?>" required>
+                <input type="text" class="form-control" id="primaryEmailInput" name="user[primary_email]" value="<?= htmlspecialchars($_SESSION["user"]["primary_email"]) ?>" required>
             </div>
             <button type="submit" class="btn btn-primary shadow-sm">Enregistrer</button>
         </form>

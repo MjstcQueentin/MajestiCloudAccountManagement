@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="<?= qr_code($new_totp["provisioning_uri"]) ?>" alt="QR Code à scanner pour obtenir les codes à usage unique" height="250">
 
                 <p class="mb-1">Ou, si vous ne pouvez pas scanner le QR Code, alors saisissez la clé de configuration qui suit :</p>
-                <pre class="border rounded fs-5 p-1"><?= $new_totp["secret"] ?></pre>
+                <pre class="border rounded fs-5 p-1"><?= htmlspecialchars($new_totp["secret"]) ?></pre>
             </div>
         <?php endif; ?>
 

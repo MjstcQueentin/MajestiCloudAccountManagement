@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Vous recevrez les notifications liées à la sécurité de votre compte sur cette adresse. Elle est facultative.</p>
         <form class="mb-3" action="" method="POST">
             <div class="mb-3">
-                <input type="email" class="form-control" id="secondaryEmailInput" name="user[recovery_email]" value="<?= $_SESSION["user"]["recovery_email"] ?>" required>
+                <input type="email" class="form-control" id="secondaryEmailInput" name="user[recovery_email]" value="<?= htmlspecialchars($_SESSION["user"]["recovery_email"]) ?>" required>
             </div>
             <button type="submit" class="btn btn-primary shadow-sm">Enregistrer</button>
         </form>
