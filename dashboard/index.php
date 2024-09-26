@@ -18,6 +18,8 @@ if ($user["primary_email_is_validated"] == false) {
 } elseif (!empty($user["to_be_deleted_after"])) {
     set_alert("Votre compte sera supprimé le " . date_create_from_format("Y-m-d H:i:s", $user["to_be_deleted_after"])->format("d/m/Y") . ".", "danger");
 }
+
+$my_clients = $api->client_get();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -95,8 +97,15 @@ if ($user["primary_email_is_validated"] == false) {
         </div>
         <div class="separator"></div>
         <div>
-            <h2><i class="bi bi-braces"></i> API</h2>
-            <p class="h4 mt-0">Prochainement disponible</p>
+            <h2><i class="bi bi-braces"></i> Options pour développeur⸱euse⸱s</h2>
+            <?php if (empty($my_clients)): ?>
+                <div class="alert alert-info">
+                    Développeur-euse, utilisez MajestiCloud pour votre authentification centralisée !
+                </div>
+            <?php else: ?>
+                <p class="mt-0">Vous administrez actuellement <?= count($my_clients) == 1 ? "un client" : count($my_clients) . " clients" ?>.</p>
+            <?php endif; ?>
+            <a href="development" class="btn btn-primary shadow-sm"><i class="bi bi-wrench-adjustable"></i> Administrer</a>
         </div>
     </section>
     <?= WebViewEngine::footer() ?>
