@@ -103,7 +103,7 @@ class MajestiCloudAPI
     public function client_get($uuid = "")
     {
         curl_setopt_array($this->ch, [
-            CURLOPT_URL => self::API_ROOT . "/client.php?uuid=" . $uuid,
+            CURLOPT_URL => self::API_ROOT . "/client/?uuid=" . $uuid,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPGET => true
         ]);
@@ -113,12 +113,22 @@ class MajestiCloudAPI
 
     public function client_patch($client = []) {
         curl_setopt_array($this->ch, [
-            CURLOPT_URL => self::API_ROOT . "/client.php",
+            CURLOPT_URL => self::API_ROOT . "/client/",
             CURLOPT_CUSTOMREQUEST => "PATCH",
             CURLOPT_POSTFIELDS => $client
         ]);
 
         return $this->parse_response(curl_exec($this->ch));
+    }
+
+    public function client_administrator_get(string $client_uuid) {
+        curl_setopt_array($this->ch, [
+            CURLOPT_URL => self::API_ROOT . "/client/administrator.php?client_uuid=" . $client_uuid,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPGET => true
+        ]);
+
+        return $this->parse_response(curl_exec($this->ch))["data"];
     }
 
     public function sessions_get()
