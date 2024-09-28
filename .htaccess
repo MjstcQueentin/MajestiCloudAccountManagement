@@ -1,4 +1,4 @@
 Options -Indexes
 
-ErrorDocument 403 /error.php
-ErrorDocument 404 /error.php
+ErrorDocument 403 /error.php?error=403%20Forbidden
+ErrorDocument 404 /error.php?error=404%20Not%20Found
