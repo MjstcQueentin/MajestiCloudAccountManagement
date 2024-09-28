@@ -3,11 +3,16 @@ include(__DIR__ . "/../../engine/core.include.php");
 require_token();
 
 $api = new MajestiCloudAPI($_SESSION["token"]);
-if (empty($_GET["uuid"])) {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $patch = $api->client_patch($_POST);
+    set_alert($patch["message"], "success");
+} elseif (empty($_GET["uuid"])) {
     header("Location: index.php");
+    exit;
 }
 
-$client = $api->client_get($_GET["uuid"]);
+$client = $api->client_get($_REQUEST["uuid"]);
 
 ?>
 <!DOCTYPE html>
@@ -36,6 +41,15 @@ $client = $api->client_get($_GET["uuid"]);
                 <label for="secretKeyInput" class="form-label">Clé secrète du client</label>
                 <input type="text" class="form-control" id="secretKeyInput" name="secret_key" value="<?= htmlspecialchars($client["secret_key"] ?? "") ?>" readonly>
             </div>
+            <form action="authentication.php" method="POST">
+                <input type="hidden" name="uuid" value="<?= htmlspecialchars($client["uuid"]) ?>">
+                <div class="mb-3">
+                    <label for="redirectUriInput" class="form-label">URL de redirection</label>
+                    <input type="text" class="form-control" id="redirectUriInput" name="callback_url" value="<?= htmlspecialchars($client["callback_url"] ?? "") ?>" aria-describedby="redirectUriHelp">
+                    <div id="redirectUriHelp" class="form-text">Saisissez ici une URI de votre client vers laquelle MajestiCloud redirigera l'utilisateur après qu'il se soit authentifié.</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
         </div>
     </section>
     <?= WebViewEngine::footer() ?>
