@@ -34,7 +34,7 @@ $client = $api->client_get($_GET["uuid"]);
             </div>
             <div class="mb-3">
                 <label for="secretKeyInput" class="form-label">Clé secrète du client</label>
-                <input type="text" class="form-control" id="secretKeyInput" name="secret_key" value="" readonly>
+                <input type="text" class="form-control" id="secretKeyInput" name="secret_key" value="<?= htmlspecialchars($client["secret_key"] ?? "") ?>" readonly>
             </div>
         </div>
     </section>
