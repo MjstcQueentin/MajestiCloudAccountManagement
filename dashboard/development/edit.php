@@ -5,6 +5,8 @@ require_token();
 $api = new MajestiCloudAPI($_SESSION["token"]);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $patch = $api->client_patch($_POST);
+    set_alert($patch["message"], "success");
 } elseif (empty($_GET["uuid"])) {
     header("Location: index.php");
     exit;
