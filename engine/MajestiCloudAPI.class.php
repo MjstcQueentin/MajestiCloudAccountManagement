@@ -157,6 +157,17 @@ class MajestiCloudAPI
         return $this->parse_response(curl_exec($this->ch));
     }
 
+    public function client_permission_get(string $client_uuid)
+    {
+        curl_setopt_array($this->ch, [
+            CURLOPT_URL => self::API_ROOT . "/client/permission.php?client_uuid=" . $client_uuid,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPGET => true
+        ]);
+
+        return $this->parse_response(curl_exec($this->ch))["data"];
+    }
+
     public function sessions_get()
     {
         curl_setopt_array($this->ch, [
