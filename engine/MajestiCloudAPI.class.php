@@ -111,7 +111,8 @@ class MajestiCloudAPI
         return $this->parse_response(curl_exec($this->ch))["data"];
     }
 
-    public function client_patch($client = []) {
+    public function client_patch($client = [])
+    {
         curl_setopt_array($this->ch, [
             CURLOPT_URL => self::API_ROOT . "/client/",
             CURLOPT_CUSTOMREQUEST => "PATCH",
@@ -121,7 +122,8 @@ class MajestiCloudAPI
         return $this->parse_response(curl_exec($this->ch));
     }
 
-    public function client_administrator_get(string $client_uuid) {
+    public function client_administrator_get(string $client_uuid)
+    {
         curl_setopt_array($this->ch, [
             CURLOPT_URL => self::API_ROOT . "/client/administrator.php?client_uuid=" . $client_uuid,
             CURLOPT_CUSTOMREQUEST => "GET",
@@ -129,6 +131,30 @@ class MajestiCloudAPI
         ]);
 
         return $this->parse_response(curl_exec($this->ch))["data"];
+    }
+
+    public function client_administrator_post(string $client_uuid, string $user_email)
+    {
+        curl_setopt_array($this->ch, [
+            CURLOPT_URL => self::API_ROOT . "/client/administrator.php",
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => [
+                "client_uuid" => $client_uuid,
+                "user_email" => $user_email
+            ]
+        ]);
+
+        return $this->parse_response(curl_exec($this->ch));
+    }
+
+    public function client_administrator_delete(string $client_uuid, string $user_uuid)
+    {
+        curl_setopt_array($this->ch, [
+            CURLOPT_URL => self::API_ROOT . "/client/administrator.php?client_uuid=" . urlencode($client_uuid) . "&user_uuid=" . urlencode($user_uuid),
+            CURLOPT_CUSTOMREQUEST => "DELETE"
+        ]);
+
+        return $this->parse_response(curl_exec($this->ch));
     }
 
     public function sessions_get()
@@ -331,6 +357,4 @@ class MajestiCloudAPI
 /**
  * MajestiCloud API Exceptions
  */
-class MajestiCloudAPIException extends Exception
-{
-}
+class MajestiCloudAPIException extends Exception {}
