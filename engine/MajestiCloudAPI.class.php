@@ -134,6 +134,16 @@ class MajestiCloudAPI
         return $this->parse_response(curl_exec($this->ch));
     }
 
+    public function client_delete($client_uuid)
+    {
+        curl_setopt_array($this->ch, [
+            CURLOPT_URL => self::API_ROOT . "/client/?uuid=" . $client_uuid,
+            CURLOPT_CUSTOMREQUEST => "DELETE"
+        ]);
+
+        return $this->parse_response(curl_exec($this->ch));
+    }
+
     public function client_administrator_get(string $client_uuid)
     {
         curl_setopt_array($this->ch, [
