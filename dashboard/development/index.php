@@ -21,7 +21,7 @@ $my_clients = $api->client_get();
                 <div class="alert alert-info">Vous n'administrez actuellement aucun client.</div>
             <?php else: ?>
                 <?php foreach ($my_clients as $client): ?>
-                    <div class="d-flex p-3 gap-3 border rounded">
+                    <div class="d-flex p-3 gap-3 border rounded mb-3">
                         <div>
                             <img src="<?= htmlspecialchars($client["logo_url"]) ?>" alt="Logo de <?= htmlspecialchars($client["name"]) ?>" height="64" width="64">
                         </div>
@@ -39,7 +39,7 @@ $my_clients = $api->client_get();
                 <?php endforeach; ?>
             <?php endif; ?>
 
-            <a href="new.php" class="btn btn-success shadow-sm mt-3">Nouveau</a>
+            <a href="create.php" class="btn btn-success shadow-sm">Nouveau</a>
         </div>
     </section>
     <?= WebViewEngine::footer() ?>

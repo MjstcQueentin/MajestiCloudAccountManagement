@@ -27,7 +27,7 @@
     <div class="border rounded-3 shadow p-4 bg-body-tertiary" style="width:100%; max-width: 700px;">
         <h2>Une erreur interne est survenue.</h2>
         <?php if (!empty($_GET["error"])) : ?>
-            <p><?= htmlspecialchars($_GET["error"]); ?></p>
+            <p><?= nl2br(htmlspecialchars($_GET["error"])); ?></p>
         <?php endif; ?>
         <a class="btn btn-sm btn-secondary" href="/">Retour vers l'interface</a>
     </div>

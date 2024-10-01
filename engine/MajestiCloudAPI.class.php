@@ -111,6 +111,18 @@ class MajestiCloudAPI
         return $this->parse_response(curl_exec($this->ch))["data"];
     }
 
+    public function client_post($client = [])
+    {
+        curl_setopt_array($this->ch, [
+            CURLOPT_URL => self::API_ROOT . "/client/",
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $client
+        ]);
+
+        return $this->parse_response(curl_exec($this->ch));
+    }
+
     public function client_patch($client = [])
     {
         curl_setopt_array($this->ch, [
