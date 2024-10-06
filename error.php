@@ -25,14 +25,14 @@
         <img src="/assets/images/logos/logo.png" alt="MajestiCloud logo" height="96">
     </div>
     <div class="border rounded-3 shadow p-4 bg-body-tertiary" style="width:100%; max-width: 700px;">
-        <h2>Une erreur interne est survenue.</h2>
+        <h2>Une erreur est survenue.</h2>
         <?php if (!empty($_GET["error"])) : ?>
-            <p><?= nl2br(htmlspecialchars($_GET["error"])); ?></p>
+            <div class="mb-3"><?= nl2br(htmlspecialchars($_GET["error"])); ?></div>
         <?php endif; ?>
-        <a class="btn btn-sm btn-secondary" href="/">Retour vers l'interface</a>
+        <a class="btn btn-sm btn-secondary" href="/">Revenir à l'interface</a>
     </div>
     <footer class="m-5">
-        &copy; 2024 Les Majesticiels
+        &copy; 2014-<?= date("Y") ?> Les Majesticiels
     </footer>
     <script src="https://assets.lesmajesticiels.org/libraries/bootstrap/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://assets.lesmajesticiels.org/libraries/bootstrap/bootstrap-5.x-custom/color-modes-toggler.js"></script>
