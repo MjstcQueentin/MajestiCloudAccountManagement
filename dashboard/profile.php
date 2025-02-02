@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    if(!empty($api_response)) set_alert($api_response["message"]);
+    if (!empty($api_response)) set_alert($api_response["message"]);
 
     $_SESSION["user"] = $api->user_get();
 }
@@ -83,7 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="hidden" name="profile_picture[action]" value="add">
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Nouvelle photo</label>
-                            <input class="form-control" type="file" name="profile_picture[file]" id="formFile" required accept="image/*">
+                            <input class="form-control" type="file" name="profile_picture[file]" id="formFile" required accept="image/*" aria-describedby="profilPictureHelp">
+                            <div id="profilPictureHelp" class="form-text">Tout format d'image accepté, 2 Mo maximum.</div>
                         </div>
                     </div>
                     <div class="modal-footer">
