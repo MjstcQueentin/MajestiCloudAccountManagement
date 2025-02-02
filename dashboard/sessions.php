@@ -28,7 +28,17 @@ usort($sessions, function ($a, $b) {
         <?php foreach ($sessions as $session) : ?>
             <div class="d-flex flex-row gap-3 border rounded p-3 mb-3">
                 <div>
-                    <i class="fs-1 bi bi-window-fullscreen"></i>
+                    <?php if (stripos($session["device_name"], "firefox") !== false) : ?>
+                        <i class="fs-1 bi bi-browser-firefox"></i>
+                    <?php elseif (stripos($session["device_name"], "edge") !== false) : ?>
+                        <i class="fs-1 bi bi-browser-safari"></i>
+                    <?php elseif (stripos($session["device_name"], "chrome") !== false) : ?>
+                        <i class="fs-1 bi bi-browser-chrome"></i>
+                    <?php elseif (stripos($session["device_name"], "safari") !== false) : ?>
+                        <i class="fs-1 bi bi-browser-safari"></i>
+                    <?php else: ?>
+                        <i class="fs-1 bi bi-window-fullscreen"></i>
+                    <?php endif; ?>
                 </div>
                 <div class="flex-grow">
                     <p class="m-0">
@@ -38,7 +48,7 @@ usort($sessions, function ($a, $b) {
                         <?php endif; ?>
                     </p>
                     <p class="m-0 text-muted"><?= htmlentities($session["device_name"]) ?> (<?= htmlentities($session["last_activity_ip"]) ?>)</p>
-                    <p class="m-0 text-muted"><?= htmlentities($session["last_activity_on"]) ?></p>
+                    <p class="m-0 text-muted"><?= date("l d F Y, H:i", strtotime($session["last_activity_on"])) ?></p>
                     <?php if ($session["uuid"] != $current['uuid']) : ?>
                         <form class="d-inline" action="" method="POST">
                             <input type="hidden" name="action" value="delete">
