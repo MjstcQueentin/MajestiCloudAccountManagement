@@ -48,7 +48,7 @@ usort($sessions, function ($a, $b) {
                         <?php endif; ?>
                     </p>
                     <p class="m-0 text-muted"><?= htmlentities($session["device_name"]) ?> (<?= htmlentities($session["last_activity_ip"]) ?>)</p>
-                    <p class="m-0 text-muted"><?= date("l d F Y, H:i", strtotime($session["last_activity_on"])) ?></p>
+                    <p class="m-0 text-muted"><?= date("l j F Y, H:i", strtotime($session["last_activity_on"])) ?></p>
                     <?php if ($session["uuid"] != $current['uuid']) : ?>
                         <form class="d-inline" action="" method="POST">
                             <input type="hidden" name="action" value="delete">

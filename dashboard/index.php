@@ -72,13 +72,14 @@ $my_clients = $api->client_get();
         <div>
             <h2><i class="bi bi-pc-display"></i> Sessions</h2>
             <p class="h4 mt-0">Dernière activité</p>
-            <div class="d-flex align-items-center gap-3 mb-2">
+            <div class="d-flex align-items-start gap-3 mb-2">
                 <div>
-                    <img src="<?= htmlspecialchars($client["logo_url"]) ?>" title="Logo de l'application" height="55" width="55">
+                    <img src="<?= htmlspecialchars($client["logo_url"]) ?>" title="Logo de l'application" height="60" width="60">
                 </div>
                 <div>
-                    <p class="m-0"><?= htmlspecialchars($sessions[0]["client_name"]) ?> sur <?= htmlspecialchars($sessions[0]["device_name"]) ?></p>
-                    <p class="m-0"><?= htmlspecialchars($sessions[0]["last_activity_on"]) ?> - <?= htmlspecialchars($sessions[0]["last_activity_ip"]) ?></p>
+                    <p class="m-0"><?= htmlspecialchars($sessions[0]["client_name"]) ?></p>
+                    <p class="m-0"><?= htmlspecialchars($sessions[0]["device_name"]) ?> (<?= htmlspecialchars($sessions[0]["last_activity_ip"]) ?>)</p>
+                    <p class="m-0"><?= date("l j F Y, H:i", strtotime($sessions[0]["last_activity_on"])) ?></p>
                 </div>
             </div>
             <a href="sessions.php" class="btn btn-primary shadow-sm"><i class="bi bi-gear-wide-connected"></i> Gérer les sessions</a>
